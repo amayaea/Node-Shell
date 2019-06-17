@@ -4,18 +4,19 @@ const exportsFromLs = require('./ls');
 const exportsFromCat = require('./cat');
 const exportsFromCurl = require('./curl');
 
-process.stdin.on('data' , (data) => {
-    const cmd = data.toString().trim();
+const done = (output) => {
+    process.stdout.write(output);
+    process.stdout.write('\nprompt > ');
+}
 
-    exportsFromPwd(cmd);
-    exportsFromLs(cmd);
-    exportsFromCat(cmd);
-    exportsFromCurl(cmd);
+process.stdin.on('data' , (data) => {
+    module.exports.cmd = data.toString().trim();
+
+    exportsFromPwd(done);
+    exportsFromLs(done);
+    exportsFromCat(done);
+    exportsFromCurl(done);
 
     // process.stdout.write('You typed: ' + cmd);
     // process.stdout.write('\nprompt > ');
 });
-
-const done = (output) => {
-    
-}

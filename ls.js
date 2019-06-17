@@ -1,14 +1,14 @@
+const input = require('./bash');
 const fs = require('fs');
 
-module.exports = (cmd) => {
-    if (cmd === 'ls'){
+module.exports = (done) => {
+    if (input.cmd === 'ls'){
         fs.readdir('./', 'utf8', (err, files) => {
             if (err) {
                 throw err;
             }
             else {
-                process.stdout.write(files.join('\n'));
-                process.stdout.write('\nprompt > ');
+                done(files.join('\n'));
             }
         })
     }

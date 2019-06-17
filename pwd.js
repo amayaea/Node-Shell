@@ -1,6 +1,7 @@
-module.exports = (cmd) => {
-    if (cmd === 'pwd'){
-        process.stdout.write(process.cwd());
-        process.stdout.write('\nprompt > ');
+const input = require('./bash');
+
+module.exports = (done) => {
+    if (input.cmd === 'pwd'){
+        done(process.cwd());
     }
 }
